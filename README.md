@@ -1,2 +1,2 @@
 # BuddyBot
-Tasteful collection of snippets, that operate through a bot. A Cybersecurity project.
+A tasteful collection of snippets, that operate through a Discord bot. A Cybersecurity project.
