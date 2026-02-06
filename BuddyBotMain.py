@@ -1,4 +1,5 @@
 #Hier importeren we de benodigde libraries voor de Discord Bot integration.
+import discord
 
 
 #Alvast de discord token hier gezet, want die gaan we nodig hebben.    
@@ -22,6 +23,6 @@ print("""
 
 """)
 print()
-print("Buddybot is wakker geworden, wat wil je doen?,\n/help voor commando's")
+print("Buddybot is wakker geworden, wat wil je doen?","\n \n","gebruik /help voor de commandolijst.")   
 
-#Bij een correcte integration kan hier d.m.v if functie commando's worden gemaakt.
+#Bij een correcte integration kan hier d.m.v if functie, commando's(userinput vanuit de discord bot) worden gebruikt om snippets te invoken. en de output terug te sturen naar de discord chat.
