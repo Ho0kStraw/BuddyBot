@@ -1,10 +1,10 @@
 #Hier importeren we de benodigde libraries voor de Discord Bot integration.
 
 
-#Alvast de discord token hier gezet, want die gaan we nodig hebben.
-DISCORD_TOKEN=#[Voor veiligheidredenen is deze token tijdelijk weggehaald]
+#Alvast de discord token hier gezet, want die gaan we nodig hebben.    
+DISCORD_TOKEN="TOKEN MOET HIER. HAAL DEZE ALTIJD WEG VOORDAT JE DE CODE GAAT COMITTEN, SLA ERGENS ANDERS VEILIG OP"
 
-#startup banner en welkom message.(alleen cosmetisch, later correct implementeren met de bot.
+#startup banner en welkom message.(alleen cosmetisch nu, maar later correct implementeren met de bot.)
 print(""" 
  _____                                                                      
 |  ___|_ ___      ____      ____ _ ____                                     
@@ -24,3 +24,4 @@ print("""
 print()
 print("Buddybot is wakker geworden, wat wil je doen?,\n/help voor commando's")
 
+#Bij een correcte integration kan hier d.m.v if functie commando's worden gemaakt.
