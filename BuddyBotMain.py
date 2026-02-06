@@ -2,7 +2,7 @@
 
 
 #Alvast de discord token hier gezet, want die gaan we nodig hebben.
-DISCORD_TOKEN=MTQ2OTA1MTk4MjgwNjUxNTcyMg.GjgoCA.KW5aw_FTFpw5ql0GH5JNoxQMwr_TPQuaKWRZoY
+DISCORD_TOKEN=#[Voor veiligheidredenen is deze token tijdelijk weggehaald]
 
 #startup banner en welkom message.(alleen cosmetisch, later correct implementeren met de bot.
 print(""" 
@@ -23,3 +23,4 @@ print("""
 """)
 print()
 print("Buddybot is wakker geworden, wat wil je doen?,\n/help voor commando's")
+
