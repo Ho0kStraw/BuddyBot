@@ -1,28 +1,59 @@
-#Hier importeren we de benodigde libraries voor de Discord Bot integration.
 import discord
+from discord.ext import commands
+from discord import app_commands
 
+# Zet hier je nieuwe, geldige bot token (NOOIT openbaar delen!)
+DISCORD_TOKEN = "Hier moet de token"
 
-#Alvast de discord token hier gezet, want die gaan we nodig hebben.    
-DISCORD_TOKEN="TOKEN MOET HIER. HAAL DEZE ALTIJD WEG VOORDAT JE DE CODE GAAT COMITTEN, SLA ERGENS ANDERS VEILIG OP"
+# Jouw server (guild) ID
+GUILD_ID = 1468980945033105450
 
-#startup banner en welkom message.(alleen cosmetisch nu, maar later correct implementeren met de bot.)
-print(""" 
- _____                                                                      
-|  ___|_ ___      ____      ____ _ ____                                     
-| |_ / _` \ \ /\ / /\ \ /\ / / _` |_  /                                     
-|  _| (_| |\ V  V /  \ V  V / (_| |/ /                                      
-|_|__\__,_| \_/\_/    \_/\_/_\__,_/___|              _   _     _       _    
- ( _ )                   / ___|_ __ ___  _   _ _ __ | |_| |__ (_)_ __ | | __
- / _ \/\                | |  _| '__/ _ \| | | | '_ \| __| '_ \| | '_ \| |/ /
-| (_>  <                | |_| | | | (_) | |_| | |_) | |_| | | | | | | |   < 
- \___/\/          _      \____|_|  \___/ \__,_| .__/ \__|_| |_|_|_| |_|_|\_
-|  \/  |_   _ ___| |_ __ _ / _| __ _          |_|                           
-| |\/| | | | / __| __/ _` | |_ / _` |                                       
-| |  | | |_| \__ \ || (_| |  _| (_| |                                       
-|_|  |_|\__,_|___/\__\__,_|_|  \__,_|                                       
+intents = discord.Intents.default()
+bot = commands.Bot(command_prefix="!", intents=intents)
 
-""")
-print()
-print("Buddybot is wakker geworden, wat wil je doen?","\n \n","gebruik /help voor de commandolijst.")   
+@bot.event
+async def on_ready():
+    print("Buddybot is wakker geworden!")
 
-#Bij een correcte integration kan hier d.m.v if functie, commando's(userinput vanuit de discord bot) worden gebruikt om snippets te invoken. en de output terug te sturen naar de discord chat.
+    # Slash commands alleen zichtbaar in jouw server (direct zichtbaar)
+    guild = discord.Object(id=GUILD_ID)
+    bot.tree.copy_global_to(guild=guild)
+    await bot.tree.sync(guild=guild)
+
+    print("Slash commands zijn herkend door Discord (guild sync actief)")
+
+# -----------------------------
+# /help command
+# -----------------------------
+@bot.tree.command(name="help", description="Toon de commandolijst")
+async def help_command(interaction: discord.Interaction):
+    await interaction.response.send_message(
+        "🤖 **Buddybot commands**\n"
+        "/help – laat dit bericht zien\n"
+        "/ping – check of de bot online is\n"
+        "/shutdown – sluit de bot af (admin only)"
+    )
+
+# -----------------------------
+# /ping command
+# -----------------------------
+@bot.tree.command(name="ping", description="Check of de bot online is")
+async def ping(interaction: discord.Interaction):
+    await interaction.response.send_message("🏓 Pong! Buddybot leeft.")
+
+# -----------------------------
+# /shutdown command
+# -----------------------------
+@bot.tree.command(name="shutdown", description="Sluit de bot af (alleen admin)")
+async def shutdown(interaction: discord.Interaction):
+    # Alleen server admins mogen de bot afsluiten
+    if interaction.user.guild_permissions.administrator:
+        await interaction.response.send_message("Bot wordt afgesloten... 👋")
+        await bot.close()  # Sluit de bot veilig af
+    else:
+        await interaction.response.send_message(
+            "Je hebt geen permissie om dit te doen!", ephemeral=True
+        )
+
+# Start de bot
+bot.run(DISCORD_TOKEN)
