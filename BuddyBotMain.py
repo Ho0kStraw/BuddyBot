@@ -6,7 +6,7 @@ from discord import app_commands
 DISCORD_TOKEN = "Hier moet de token"
 
 # Jouw server (guild) ID
-GUILD_ID = 1468980945033105450
+GUILD_ID = (serverID)
 
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -57,3 +57,4 @@ async def shutdown(interaction: discord.Interaction):
 
 # Start de bot
 bot.run(DISCORD_TOKEN)
+
