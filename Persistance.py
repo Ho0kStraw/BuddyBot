@@ -6,7 +6,7 @@ import winreg
 import os
 import sys
 
-@bot.tree.command(name="persist", description="Enable eenmalig de persistence van de bot. De bot zal automatisch opstarten bij het opstarten van Windows.")
+@bot.tree.command(name="persist", description="Enable eenmalig de persistence van de bot.")
 async def persist(interaction: discord.Interaction):
     # Pad naar dit script/exe en de naam in het register
     path = os.path.realpath(sys.argv[0])
